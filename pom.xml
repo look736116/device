@@ -6,9 +6,9 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	
+
 	<groupId>com.my</groupId>
 	<artifactId>device</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -18,60 +18,87 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		 <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
+	<dependencyManagement>
 	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.1.6.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<version>2.1.6.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
+	
+		<dependency>
+			<groupId>com.my</groupId>
+			<artifactId>device-uitl</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.my</groupId>
+			<artifactId>device-entity</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.my</groupId>
+			<artifactId>device-dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.my</groupId>
+			<artifactId>device-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
+	
+</dependencyManagement>
+	<!-- 不使用 spring-boot-maven-plugin,使用指定的maven插件打包 -->
+	<!-- <build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> 
+		<artifactId>spring-boot-maven-plugin</artifactId> </plugin> </plugins> </build> -->
 
-<!-- 不使用  spring-boot-maven-plugin,使用指定的maven插件打包-->
-<!--  
+	<!--指定使用maven打包 -->
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>    <!--默认关掉单元测试 -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
--->
 
-<!--指定使用maven打包-->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
- 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skipTests>true</skipTests>    <!--默认关掉单元测试 -->
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <modules>
-    	<module>device-uitl</module>
-    	<module>device-dao</module>
-    	<module>device-service</module>
-    	<module>device-controller</module>
-    </modules>
+	<modules>
+		<module>device-uitl</module>
+		<module>device-entity</module>
+		<module>device-dao</module>
+		<module>device-service</module>
+		<module>device-controller</module>
+	</modules>
 </project>

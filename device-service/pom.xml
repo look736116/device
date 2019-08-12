@@ -6,4 +6,30 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>device-service</artifactId>
+  <dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.my</groupId>
+			<artifactId>device-uitl</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.my</groupId>
+			<artifactId>device-entity</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.my</groupId>
+			<artifactId>device-dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+	</dependencies>
 </project>

@@ -16,7 +16,7 @@ public class DeviceCobtroller {
 	
 	@RequestMapping("/port")
 	public String getApplicationPort(){
-		
+		System.out.println(port);
 		return port;
 	}
 

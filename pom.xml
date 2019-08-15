@@ -54,6 +54,7 @@
 			<artifactId>device-entity</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.my</groupId>
 			<artifactId>device-dao</artifactId>
